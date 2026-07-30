@@ -1,0 +1,394 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'IBM Plex Sans Arabic', 'Arial', sans-serif; /* Matched to your dashboard */
+}
+
+body {
+    background: #f8f9fa;
+    color: #0f172a; /* Deep slate text */
+    min-height: 100vh;
+}
+
+/* LOGIN PAGE */
+.login-page {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Left Panel (The "Grey Kinda" Side) */
+.login-left {
+    flex: 1;
+    /* Soft, modern slate-grey gradient */
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px;
+    border-right: 1px solid #cbd5e1;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle blue glows for the light theme */
+.login-left::before {
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(30, 111, 196, 0.06) 0%, transparent 70%);
+    top: -100px;
+    left: -100px;
+    border-radius: 50%;
+}
+
+.login-left::after {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(30, 111, 196, 0.04) 0%, transparent 70%);
+    bottom: -50px;
+    right: -50px;
+    border-radius: 50%;
+}
+
+.brand {
+    margin-bottom: 60px;
+    position: relative;
+    z-index: 1;
+}
+
+.brand-logo {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.brand h1 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #1e6fc4; /* Sharp blue */
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.brand p {
+    color: #64748b; /* Soft slate */
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.brand-website {
+    display: inline-block;
+    margin-top: 6px;
+    color: #1e6fc4;
+    font-size: 13px;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+}
+
+.brand-website:hover {
+    color: #1759a3; /* Darker blue on hover for light mode */
+    text-decoration: underline;
+}
+
+.brand-tagline {
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+.brand-tagline p {
+    color: #475569;
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 320px;
+}
+
+.brand-stats {
+    display: flex;
+    gap: 30px;
+    position: relative;
+    z-index: 1;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat h3 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #1e6fc4;
+    margin-bottom: 4px;
+}
+
+.stat p {
+    color: #64748b;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.brand-features {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    background: #ffffff; /* Pure white feature cards against the grey background */
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    transition: border 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.feature:hover {
+    border-color: #5aa3e8;
+    box-shadow: 0 4px 6px rgba(30,111,196,0.05);
+    transform: translateY(-1px);
+}
+
+.feature span {
+    font-size: 22px;
+}
+
+.feature p {
+    color: #475569;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Right Panel (The Pure White Form Side) */
+.login-right {
+    width: 480px;
+    min-width: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff; /* Pure white */
+    padding: 40px;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 380px;
+    animation: fadeUp 0.4s ease;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.login-header {
+    margin-bottom: 35px;
+}
+
+.login-header h2 {
+    font-size: 26px;
+    font-weight: bold;
+    color: #0f172a; /* Deep slate */
+    margin-bottom: 6px;
+}
+
+.login-header p {
+    color: #64748b;
+    font-size: 14px;
+}
+
+.error-msg {
+    background: rgba(220, 38, 38, 0.08); /* Light mode red tint */
+    border: 1px solid rgba(220, 38, 38, 0.2);
+    color: #dc2626;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 11px;
+    font-weight: bold;
+    color: #64748b;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.input-wrap {
+    position: relative;
+}
+
+.input-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 15px;
+    opacity: 0.8;
+}
+
+/* Form Inputs */
+.input-group input {
+    width: 100%;
+    padding: 13px 14px 13px 44px;
+    background: #f8f9fa; /* Soft grey input inside the white panel */
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    color: #0f172a;
+    font-size: 14px;
+    outline: none;
+    transition: border 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.input-group input:focus {
+    border-color: #1e6fc4;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(30, 111, 196, 0.10);
+}
+
+.input-group input::placeholder {
+    color: #94a3b8; /* Lighter slate placeholder */
+}
+
+/* Submit Button */
+.login-btn {
+    width: 100%;
+    padding: 14px;
+    background: #1e6fc4;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+    margin-top: 8px;
+}
+
+.login-btn:hover {
+    background: #1759a3;
+    box-shadow: 0 4px 12px rgba(30, 111, 196, 0.2);
+}
+.login-btn:active { transform: scale(0.98); }
+
+.login-footer {
+    text-align: center;
+    margin-top: 30px;
+    color: #94a3b8;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.brand-tagline {
+    margin-bottom: 40px;
+}
+
+.brand-tagline p {
+    color: #4a5568;
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 320px;
+}
+
+.brand-stats {
+    display: flex;
+    gap: 30px;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat h3 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #1e6fc4;
+    margin-bottom: 4px;
+}
+
+.stat p {
+    color: #4a5568;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.lang-toggle {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 10;
+}
+
+.lang-btn {
+    background: transparent;
+    border: 1px solid #21262d;
+    color: #4a5568;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s;
+    letter-spacing: 1px;
+}
+
+.lang-btn.active {
+    border-color: #1e6fc4;
+    color: #1e6fc4;
+}
+
+.lang-btn:hover {
+    border-color: #1e6fc4;
+    color: #1e6fc4;
+}
+
+/* Arabic font support */
+[lang="ar"] {
+    font-family: 'Arial', 'Tahoma', sans-serif;
+}
+
+[dir="rtl"] .input-icon {
+    left: auto;
+    right: 14px;
+}
+
+[dir="rtl"] .input-group input {
+    padding: 13px 44px 13px 14px;
+}
+
+[dir="rtl"] .login-left {
+    border-right: none;
+    border-left: 1px solid #21262d;
+}
+
+[dir="rtl"] .lang-toggle {
+    right: auto;
+    left: 25px;
+}

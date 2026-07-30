@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" id="html-root">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DocPortal — Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='auth_style.css') }}">
+</head>
+<body>
+    <div class="login-page">
+        <div class="login-left">
+            <div class="lang-toggle">
+                <button onclick="setLang('en')" id="btn-en" class="lang-btn active">EN</button>
+                <span style="color:#2d333b;">|</span>
+                <button onclick="setLang('ar')" id="btn-ar" class="lang-btn">ع</button>
+            </div>
+            <div class="brand">
+                <img src="{{ url_for('static', filename='app_logo.png') }}" alt="App Logo" class="brand-logo">
+                <h1>DocPortal</h1>
+                <p data-en="YOUR COMPANY NAME"
+                   data-ar="اسم شركتك">
+                   YOUR COMPANY NAME
+                </p>
+                <a href="https://www.example.com" target="_blank" class="brand-website">www.example.com</a>
+            </div>
+            <div class="brand-features">
+                <div class="brand-tagline">
+                    <p data-en="Centralized document management for seamless collaboration across all departments."
+                       data-ar="إدارة مستندات مركزية لتعاون سلس عبر جميع الأقسام.">
+                       Centralized document management for seamless collaboration across all departments.
+                    </p>
+                </div>
+                <div class="brand-stats">
+                    <div class="stat">
+                        <h3>10+</h3>
+                        <p data-en="Departments" data-ar="أقسام">Departments</p>
+                    </div>
+                    <div class="stat">
+                        <h3>2026</h3>
+                        <p data-en="Est. Portal" data-ar="تأسيس البوابة">Est. Portal</p>
+                    </div>
+                    <div class="stat">
+                        <h3>100%</h3>
+                        <p data-en="Secure" data-ar="آمن">Secure</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="login-right">
+            <div class="login-box">
+                <div class="login-header">
+                    <h2 data-en="Welcome Back" data-ar="مرحباً بعودتك">Welcome Back</h2>
+                    <p data-en="Sign in to access your portal"
+                       data-ar="سجّل دخولك للوصول إلى البوابة">
+                       Sign in to access your portal
+                    </p>
+                </div>
+
+                {% if error %}
+                <div class="error-msg">
+                    <span>⚠️</span> {{ error }}
+                </div>
+                {% endif %}
+
+                <form method="POST">
+                    <div class="input-group">
+                        <label data-en="Username" data-ar="اسم المستخدم">Username</label>
+                        <div class="input-wrap">
+                            <span class="input-icon">👤</span>
+                            <input type="text" name="username"
+                                   data-en-placeholder="Enter your username"
+                                   data-ar-placeholder="أدخل اسم المستخدم"
+                                   placeholder="Enter your username" required autofocus>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label data-en="Password" data-ar="كلمة المرور">Password</label>
+                        <div class="input-wrap">
+                            <span class="input-icon">🔒</span>
+                            <input type="password" name="password"
+                                   data-en-placeholder="Enter your password"
+                                   data-ar-placeholder="أدخل كلمة المرور"
+                                   placeholder="Enter your password" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="login-btn">
+                        <span data-en="Sign In →" data-ar="← تسجيل الدخول">Sign In →</span>
+                    </button>
+                </form>
+
+                <p class="login-footer">DocPortal © 2026</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function setLang(lang) {
+            const html = document.getElementById('html-root');
+            html.setAttribute('lang', lang);
+            html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+
+            document.querySelectorAll('[data-en]').forEach(el => {
+                el.textContent = el.getAttribute('data-' + lang);
+            });
+
+            document.querySelectorAll('[data-en-placeholder]').forEach(el => {
+                el.placeholder = el.getAttribute('data-' + lang + '-placeholder');
+            });
+
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+            document.getElementById('btn-ar').classList.toggle('active', lang === 'ar');
+
+            localStorage.setItem('lang', lang);
+        }
+
+        const savedLang = localStorage.getItem('lang') || 'en';
+        setLang(savedLang);
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+Flask>=3.0
+pyodbc>=5.0
+python-dotenv>=1.0
+requests>=2.31
+Pillow>=10.0
+waitress>=2.1
+flask-socketio>=5.3    # Real-time push for messaging/notifications (async_mode="threading" — stays pyodbc-safe, no eventlet/gevent needed)
+cryptography>=42.0     # Fernet encryption for per-user SMTP credentials (Sys_User)
+reportlab>=4.0         # PDF generation/stamping for document signing (used with pypdf)
+
+# OCR support
+pytesseract>=0.3.10
+pdf2image>=1.17
+pypdf>=4.0
+easyocr>=1.7          # Primary OCR engine — better Arabic+English accuracy than Tesseract
+numpy>=1.24           # Required by EasyOCR
+torch>=2.0            # Required by EasyOCR (pulled in automatically)
+
+# System requirements (install separately via OS package manager, not pip):
+#   - tesseract-ocr binary       e.g. apt-get install tesseract-ocr / brew install tesseract
+#   - Arabic OCR language data    e.g. apt-get install tesseract-ocr-ara / brew install tesseract-lang
+#   - poppler-utils (PDF->image)  e.g. apt-get install poppler-utils / brew install poppler
