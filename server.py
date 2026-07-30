@@ -14255,14 +14255,6 @@ if __name__ == "__main__":
 
     print("Server running on http://localhost:5002")
 
-    # Serve through Waitress either way — a real production WSGI server,
-    # no dev-server warning. Flask-SocketIO (async_mode="threading") attaches
-    # itself as WSGI middleware on `app`, so Waitress transparently serves
-    # /socket.io/* too. The only thing this gives up vs. eventlet/gevent is
-    # the WebSocket upgrade itself: Socket.IO falls back to (long-)polling
-    # transport automatically, which is plain HTTP and works fine under any
-    # WSGI server. Messages/notifications still arrive near-instantly —
-    # they just ride on polling instead of a persistent WS connection.
     from waitress import serve
     if socketio is None:
         print("[socketio] flask-socketio not installed — real-time push "
