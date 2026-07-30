@@ -28,6 +28,19 @@ A full-stack internal document management system built with Flask and SQL Server
 4. Point `SQLSERVER_*` env vars at your own SQL Server instance and schema.
 5. Run with `python server.py`.
 
+## Database Schema
+
+This is a portfolio/reference implementation, not a plug-and-play app. It expects a specific SQL Server schema that isn't included here — cloning this repo and running it against an empty database will not work out of the box.
+
+The code references roughly two dozen tables, organized into three groups:
+
+- **Archiving core**: `Adco_Folder`, `Adco_Transactions`, `Adco_Transactions_Attachments`
+- **System/users**: `Sys_User`, `Sys_Department`, `Sys_AccR`, `Sys_AuditLog`, `Sys_DP_DL`, `Sys_Notifications_Mang`, `Sys_Msg*` (messaging tables)
+- **Workflow engine**: `WF_Templates`, `WF_Template_Steps`, `WF_Template_Step_Assignees`, `WF_Instances`, `WF_Instance_Steps`, `WF_Instance_Assignments`, `WF_Instance_Attachments`, `WF_Comments`, `WF_History`, `WF_Config`
+
+If you want to run this yourself, you'll need to design and create a matching schema (or adapt the queries in `server.py` to your own). This repo is meant to show the application logic and architecture, not to be a turnkey deployment.
+
+
 ## Notes
 
 This repo has had all company names, internal IP addresses, and default credentials removed or replaced with placeholders. It's meant to demonstrate architecture and implementation, not to be a drop-in deployable product for a specific organization.
